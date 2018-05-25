@@ -1,6 +1,5 @@
 package Draw;
 import java.awt.Font;
-import java.io.File;
 
 import tools.FileReader;
 import java.util.List;
@@ -21,7 +20,7 @@ import DataBase.WorkloadInfo;
 
 public class DrawWorkLoadPerson{
 	ChartPanel frame1;
-	static String [] lines =new FileReader("//home/feikuang/workspace/tmp/findfault.txt","UTF-8").getLines();
+	static String [] lines =new FileReader("C:\tmp\findfault.txt","UTF-8").getLines();
 	
 
 	static String reg = "'";

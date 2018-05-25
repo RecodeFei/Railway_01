@@ -72,7 +72,7 @@ public class AccuracyInfoDisplay {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String QueryAccuracyInfoText = tfName.getText();
-				new FileWriter().wirte("accuracy.txt", QueryAccuracyInfoText);
+				new FileWriter().wirte("fccuracy.txt", QueryAccuracyInfoText);
 				if (QueryAccuracyInfoText.length() == 0) {				
 					if (QueryAccuracyInfoText.length() == 0) {
 						try {

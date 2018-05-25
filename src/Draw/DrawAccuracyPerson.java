@@ -21,7 +21,8 @@ import DataBase.AccuracyInfo;
 
 public class DrawAccuracyPerson{
 	ChartPanel frame1;
-	static String [] lines =new FileReader("/home/feikuang/workspace/tmp/accuracy.txt","UTF-8").getLines();
+	static String [] lines =new FileReader("C:\tmp\fccuracy.txt","UTF-8").getLines();
+	
 	static String reg = "'";
 	static String name = lines[0].replaceAll(reg,"");
 	public  DrawAccuracyPerson() throws Exception{
