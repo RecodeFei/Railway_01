@@ -12,17 +12,17 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import DataBase.BaseController;
-import DataBase.BaseInfo;
+import DataBase.FindfaultController;
+import DataBase.FindfaultInfo;
 
-public class DrawBaseInfoSkill {
+public class DrawFindFaultTotal {
 	ChartPanel frame1;
-	public  DrawBaseInfoSkill() throws Exception{
+	public  DrawFindFaultTotal() throws Exception{
 		CategoryDataset dataset = getDataSet();
         JFreeChart chart = ChartFactory.createBarChart3D(
-       		                 "技能等级", // 图表标题
-                            "技能等级", // 目录轴的显示标签
-                            "人数", // 数值轴的显示标签
+       		                 "发现故障情况总量", // 图表标题
+                            "班组", // 目录轴的显示标签
+                            "数量", // 数值轴的显示标签
                             dataset, // 数据集
                             PlotOrientation.VERTICAL, // 图表方向：水平、垂直
                             true,           // 是否显示图例(对于简单的柱状图必须是false)
@@ -47,41 +47,31 @@ public class DrawBaseInfoSkill {
 	}
 	   private static CategoryDataset getDataSet() throws Exception {
            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-           List<BaseInfo> baseInfos = new BaseController().query();
-           int zhongji = 0;
-           int gaoji = 0;
-           int gongchengshi = 0;
-           int zhulizhenggongshi = 0;
-           int zhuligongchengshi = 0;
-           int jishi = 0;
-           
-           for(int i=0; i<baseInfos.size(); i++) {
+           List<FindfaultInfo> findfaultInfos = new FindfaultController().query();
+           int yiban = 0;
+           int erban = 0;
+           int sanban = 0;
+           int siban = 0;
+           for(int i=0; i<findfaultInfos.size(); i++) {
         	   //System.out.println(baseInfos.get(i).getEducation());
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("中级工")) {
-        		   zhongji += 1;   		   
+        	   if(findfaultInfos.get(i).getTeam().toString().equals("一班")) {
+        		   yiban += 1;
         	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("高级工")) {
-        		   gaoji  += 1;
+        	   if(findfaultInfos.get(i).getTeam().toString().equals("二班")) {
+        		   erban += 1;
         	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("工程师")) {
-        		   gongchengshi += 1;
+        	   if(findfaultInfos.get(i).getTeam().toString().equals("三班")) {
+        		   sanban += 1;
         	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("助理政工师")) {
-        		   zhulizhenggongshi += 1;
+        	   if(findfaultInfos.get(i).getTeam().toString().equals("四班")) {
+        		   siban += 1;
         	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("助理工程师")) {
-        		   zhuligongchengshi += 1;
-        	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("技师")) {
-        		   jishi  += 1;
-        	   }	
+        	  
            }
-           dataset.addValue(gongchengshi, "工程师", "工程师");
-           dataset.addValue(zhongji , "中级工", "中级工");
-           dataset.addValue(gaoji, "高级工", "高级工");
-           dataset.addValue(zhulizhenggongshi, "助理政工师", "助理政工师");
-           dataset.addValue(zhuligongchengshi, "助理工程师", "助理工程师");
-           dataset.addValue(jishi, "技师", "技师");
+           dataset.addValue(yiban, "一班", "一班");
+           dataset.addValue(erban, "二班", "二班");
+           dataset.addValue(sanban, "三班", "三班");
+           dataset.addValue(siban, "四班", "四班");
            
            return dataset;
 }

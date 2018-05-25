@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 public class DrawWorkLoadmainClass {
 public void DrawWorkloadDisplay() throws Exception{
 	//public static void main(String args[]) throws Exception{
-	JFrame frame=new JFrame("检车员工作量");
+	JFrame frame=new JFrame("TFDS动态检车员工作量统计");
 	frame.setLayout(new GridLayout(2,2,10,10));
 	frame.add(new DrawWorkLoadInfoTotal().getChartPanel()); 
 	frame.add(new DrawWorkLoadTeam().getChartPanel());

@@ -1,5 +1,6 @@
 package Draw;
 import java.awt.Font;
+import tools.FileReader;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
@@ -11,23 +12,22 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.statistics.HistogramBin;
 
-import DataBase.BaseController;
-import DataBase.BaseInfo;
+
 import DataBase.WorkloadController;
 import DataBase.WorkloadInfo;
-import Display.WorkLoadInfoDisplay;
 
 public class DrawWorkLoadPerson{
 	ChartPanel frame1;
-	String person;
+	static String [] lines =new FileReader("/home/feikuang/workspace/Railway_01/findfault.txt","UTF-8").getLines();
+	static String reg = "'";
+	static String name = lines[0].replaceAll(reg,"");
 	public  DrawWorkLoadPerson() throws Exception{
 		CategoryDataset dataset = getDataSet();
-		WorkLoadInfoDisplay workLoadInfoDisplay = new WorkLoadInfoDisplay();
+		
 		
         JFreeChart chart = ChartFactory.createBarChart3D(
-       		                 "个人", // 图表标题
+       		                name, // 图表标题
                             "日期", // 目录轴的显示标签
                             "数量", // 数值轴的显示标签
                             dataset, // 数据集
@@ -68,52 +68,52 @@ public class DrawWorkLoadPerson{
            for(int i=0; i<workloadInfos.size(); i++) {
         	   //System.out.println(baseInfos.get(i).getEducation());
         	   if( workloadInfos.get(i).getTime().toString().equals("2017年6月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person76 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2017年7月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person77 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2017年8月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person78 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2017年9月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person79 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2017年10月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person710 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2017年11月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person711 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2017年12月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person712 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2018年1月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person81 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2018年2月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person82 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }
         	   if( workloadInfos.get(i).getTime().toString().equals("2018年3月")) {
-        		   if(workloadInfos.get(i).getName().toString().equals("杨刚")) {
+        		   if(workloadInfos.get(i).getName().toString().equals(name)) {
         			   person83 =Double.valueOf(workloadInfos.get(i).getNum().toString()).intValue();
         		   }
         	   }

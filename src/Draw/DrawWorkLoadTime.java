@@ -20,7 +20,7 @@ public class DrawWorkLoadTime {
 	public  DrawWorkLoadTime() throws Exception{
 		CategoryDataset dataset = getDataSet();
         JFreeChart chart = ChartFactory.createBarChart3D(
-       		                 "总量", // 图表标题
+       		                 "月工作量", // 图表标题
                             "班组", // 目录轴的显示标签
                             "数量", // 数值轴的显示标签
                             dataset, // 数据集

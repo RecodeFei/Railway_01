@@ -12,7 +12,6 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -72,28 +71,35 @@ public class BaseInfoDisaply {
 				// TODO Auto-generated method stub
 				String QueryBaseInfoText = tfName.getText();
 				if (QueryBaseInfoText.length() == 0) {
-					JOptionPane.showMessageDialog(f, "关键字不能为空");//弹出对话框提示用户
-					//名称输入框获取焦点
-					tfName.grabFocus();
+					try {
+						List<BaseInfo> baseInfos = new BaseController().query();
+						baseInfoModel.baseinfos = baseInfos;
+						t.updateUI();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}else {
+					List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
+					Map<String, Object> param=new HashMap<String, Object>();
+					param.put("name", "name");
+					param.put("rela", "=");//以键值对的方式上传参数
+					param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
+					params.add(param);
+					
+					BaseController dbControllerByname = new BaseController();
+					List<BaseInfo> list = null;
+					try {
+						list = dbControllerByname.get(params);
+						baseInfoModel.baseinfos = list;
+						t.updateUI();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}		
 				}
-				List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
-				Map<String, Object> param=new HashMap<String, Object>();
-				param.put("name", "name");
-				param.put("rela", "=");//以键值对的方式上传参数
-				param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
-				params.add(param);
+				}
 				
-				BaseController dbControllerByname = new BaseController();
-				List<BaseInfo> list = null;
-				try {
-					list = dbControllerByname.get(params);
-					baseInfoModel.baseinfos = list;
-					t.updateUI();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}		
-			}
 		});
         
         t.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

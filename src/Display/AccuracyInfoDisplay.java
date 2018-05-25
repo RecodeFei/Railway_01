@@ -12,14 +12,16 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import tools.FileWriter;
+
 import DataBase.AccuracyController;
 import DataBase.AccuracyInfo;
+import Draw.DrawAccuracymainClass;
 
 public class AccuracyInfoDisplay {
 
@@ -55,7 +57,12 @@ public class AccuracyInfoDisplay {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				try {
+					new DrawAccuracymainClass().DrawAccuracyDisplay();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
         
@@ -65,29 +72,39 @@ public class AccuracyInfoDisplay {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String QueryAccuracyInfoText = tfName.getText();
-				if (QueryAccuracyInfoText.length() == 0) {
-					JOptionPane.showMessageDialog(f, "关键字不能为空");//弹出对话框提示用户
-					//名称输入框获取焦点
-					tfName.grabFocus();
+				new FileWriter().wirte("accuracy.txt", QueryAccuracyInfoText);
+				if (QueryAccuracyInfoText.length() == 0) {				
+					if (QueryAccuracyInfoText.length() == 0) {
+						try {
+							List<AccuracyInfo> accuracyInfos = new AccuracyController().query();
+							AccuracyInfoModel.accuracyInfos = accuracyInfos;
+							t.updateUI();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				}else {
+					List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
+					Map<String, Object> param=new HashMap<String, Object>();
+					param.put("name", "name");
+					param.put("rela", "=");//以键值对的方式上传参数
+					param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
+					params.add(param);
+					
+					AccuracyController accuracyController = new AccuracyController();
+					List<AccuracyInfo> list = null;
+					try {
+						list = accuracyController.get(params);
+						AccuracyInfoModel.accuracyInfos = list;
+						t.updateUI();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}		
 				}
-				List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
-				Map<String, Object> param=new HashMap<String, Object>();
-				param.put("name", "name");
-				param.put("rela", "=");//以键值对的方式上传参数
-				param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
-				params.add(param);
+				}
+				}
 				
-				AccuracyController accuracyController = new AccuracyController();
-				List<AccuracyInfo> list = null;
-				try {
-					list = accuracyController.get(params);
-					AccuracyInfoModel.accuracyInfos = list;
-					t.updateUI();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}		
-			}
 		});
         
         //t.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -101,5 +118,6 @@ public class AccuracyInfoDisplay {
         f.setVisible(true);
 
 	}
+        
 }
 

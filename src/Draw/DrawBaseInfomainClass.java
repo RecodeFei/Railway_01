@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 public class DrawBaseInfomainClass {
 public void DrawBaseDisplay() throws Exception{
-	JFrame frame=new JFrame("人员基本情况");
+	JFrame frame=new JFrame("TFDS动态检车员基本信息");
 	frame.setLayout(new GridLayout(2,2,10,10));
 	frame.add(new DrawBaseInfoEdu().getChartPanel()); 
 	frame.add(new DrawBaseinfoOutlook().getChartPanel());

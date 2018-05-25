@@ -12,13 +12,15 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import tools.FileWriter;
 import DataBase.FindfaultController;
 import DataBase.FindfaultInfo;
+import Draw.DrawFindFaultmainClass;
 
 public class FindFaultInfoDisplay {
 
@@ -39,44 +41,67 @@ public class FindFaultInfoDisplay {
         JLabel lName = new JLabel("关键字");
         final JTextField tfName = new JTextField("");
         JButton QueryFindFaultInfoBtn = new JButton("查询");
+        JButton DrawFindFaultBtn = new JButton("图显");
         tfName.setPreferredSize(new Dimension(400, 30));
         QueryFindFaultInfoBtn.setPreferredSize(new Dimension(100,30));
+        DrawFindFaultBtn.setPreferredSize(new Dimension(100, 30));
         
         p.add(lName);
         p.add(tfName);
         p.add(QueryFindFaultInfoBtn);
+        p.add(DrawFindFaultBtn);
+        
+        DrawFindFaultBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				try {
+					new DrawFindFaultmainClass().DrawFindFaultDisplay();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
         
         QueryFindFaultInfoBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String QueryFindFaultInfoText = tfName.getText();
-				
-				
+				String QueryFindFaultInfoText = tfName.getText();			
+				new FileWriter().wirte("findfault.txt", QueryFindFaultInfoText);
 				if (QueryFindFaultInfoText.length() == 0) {
-					JOptionPane.showMessageDialog(f, "关键字不能为空");//弹出对话框提示用户
-					//名称输入框获取焦点
-					tfName.grabFocus();
+					try {
+						List<FindfaultInfo> findfaultInfos = new FindfaultController().query();
+						findFaultInfoModel.findfaultInfos = findfaultInfos;
+						t.updateUI();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}else {
+					List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
+					Map<String, Object> param=new HashMap<String, Object>();
+					param.put("name", "name");
+					param.put("rela", "=");//以键值对的方式上传参数
+					param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
+					params.add(param);
+					
+					FindfaultController findfaultController = new FindfaultController();
+					List<FindfaultInfo> list = null;
+					try {
+						list = findfaultController.get(params);
+						findFaultInfoModel.findfaultInfos = list;
+						t.updateUI();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}		
 				}
-				List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
-				Map<String, Object> param=new HashMap<String, Object>();
-				param.put("name", "name");
-				param.put("rela", "=");//以键值对的方式上传参数
-				param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
-				params.add(param);
+				}
 				
-				FindfaultController findfaultController = new FindfaultController();
-				List<FindfaultInfo> list = null;
-				try {
-					list = findfaultController.get(params);
-					findFaultInfoModel.findfaultInfos = list;
-					t.updateUI();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}		
-			}
 		});
         
         //t.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

@@ -1,5 +1,6 @@
 package Draw;
 import java.awt.Font;
+import tools.FileReader;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
@@ -12,17 +13,23 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import DataBase.BaseController;
-import DataBase.BaseInfo;
 
-public class DrawBaseInfoSkill {
+import DataBase.FindfaultController;
+import DataBase.FindfaultInfo;
+
+public class DrawFindFaultPerson{
 	ChartPanel frame1;
-	public  DrawBaseInfoSkill() throws Exception{
+	static String [] lines =new FileReader("/home/feikuang/workspace/Railway_01/findfault.txt","UTF-8").getLines();
+	static String reg = "'";
+	static String name = lines[0].replaceAll(reg,"");
+	public  DrawFindFaultPerson() throws Exception{
 		CategoryDataset dataset = getDataSet();
+		
+		
         JFreeChart chart = ChartFactory.createBarChart3D(
-       		                 "技能等级", // 图表标题
-                            "技能等级", // 目录轴的显示标签
-                            "人数", // 数值轴的显示标签
+       		                name, // 图表标题
+                            "日期", // 目录轴的显示标签
+                            "数量", // 数值轴的显示标签
                             dataset, // 数据集
                             PlotOrientation.VERTICAL, // 图表方向：水平、垂直
                             true,           // 是否显示图例(对于简单的柱状图必须是false)
@@ -47,46 +54,44 @@ public class DrawBaseInfoSkill {
 	}
 	   private static CategoryDataset getDataSet() throws Exception {
            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-           List<BaseInfo> baseInfos = new BaseController().query();
-           int zhongji = 0;
-           int gaoji = 0;
-           int gongchengshi = 0;
-           int zhulizhenggongshi = 0;
-           int zhuligongchengshi = 0;
-           int jishi = 0;
-           
-           for(int i=0; i<baseInfos.size(); i++) {
+           List<FindfaultInfo> findfaultInfos = new FindfaultController().query();
+           int typeA = 0;
+           int typeB = 0;
+           int typeC = 0;
+           int typeD = 0;
+           int typeE = 0;
+           for(int i=0; i<findfaultInfos.size(); i++) {
         	   //System.out.println(baseInfos.get(i).getEducation());
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("中级工")) {
-        		   zhongji += 1;   		   
-        	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("高级工")) {
-        		   gaoji  += 1;
-        	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("工程师")) {
-        		   gongchengshi += 1;
-        	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("助理政工师")) {
-        		   zhulizhenggongshi += 1;
-        	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("助理工程师")) {
-        		   zhuligongchengshi += 1;
-        	   }
-        	   if(baseInfos.get(i).getSkill_level().toString().equals("技师")) {
-        		   jishi  += 1;
-        	   }	
+        	  if(findfaultInfos.get(i).getName().equals(name)){
+        		  if(findfaultInfos.get(i).getFault_type().equals("A类故障")){
+        			  typeA += 1;
+        		  }
+        		  if(findfaultInfos.get(i).getFault_type().equals("B类故障")){
+        			  typeB += 1;
+        		  }
+        		  if(findfaultInfos.get(i).getFault_type().equals("C类故障")){
+        			  typeC += 1;
+        		  }
+        		  if(findfaultInfos.get(i).getFault_type().equals("D类故障")){
+        			  typeD += 1;
+        		  }
+        		  if(findfaultInfos.get(i).getFault_type().equals("E类故障")){
+        			  typeE += 1;
+        		  }
+        	  }
            }
-           dataset.addValue(gongchengshi, "工程师", "工程师");
-           dataset.addValue(zhongji , "中级工", "中级工");
-           dataset.addValue(gaoji, "高级工", "高级工");
-           dataset.addValue(zhulizhenggongshi, "助理政工师", "助理政工师");
-           dataset.addValue(zhuligongchengshi, "助理工程师", "助理工程师");
-           dataset.addValue(jishi, "技师", "技师");
+           dataset.addValue(typeA, "A类故障", "A类故障");
+           dataset.addValue(typeB, "B类故障", "B类故障");
+           dataset.addValue(typeC, "C类故障", "C类故障");
+           dataset.addValue(typeD, "D类故障", "D类故障");
+           dataset.addValue(typeE, "E类故障", "E类故障");
            
+        	
            return dataset;
 }
 public ChartPanel getChartPanel(){
 	return frame1;
 	
 }
+
 }

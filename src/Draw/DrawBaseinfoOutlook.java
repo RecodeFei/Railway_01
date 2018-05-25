@@ -22,7 +22,7 @@ public class DrawBaseinfoOutlook {
         JFreeChart chart = ChartFactory.createBarChart3D(
        		                 "政治面貌", // 图表标题
                             "政治面貌", // 目录轴的显示标签
-                            "数量", // 数值轴的显示标签
+                            "人数", // 数值轴的显示标签
                             dataset, // 数据集
                             PlotOrientation.VERTICAL, // 图表方向：水平、垂直
                             true,           // 是否显示图例(对于简单的柱状图必须是false)

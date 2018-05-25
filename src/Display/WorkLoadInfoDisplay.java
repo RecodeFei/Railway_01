@@ -12,11 +12,12 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import tools.FileWriter;
 import DataBase.WorkloadController;
 import DataBase.WorkloadInfo;
 import Draw.DrawWorkLoadmainClass;
@@ -27,6 +28,7 @@ public class WorkLoadInfoDisplay {
 	 * @param args
 	 * @throws Exception 
 	 */
+	JTextField tfName = new JTextField("");
 	public void WorkLoadInfoShow() throws Exception {
 		// TODO Auto-generated method stub
 		final JFrame f = new JFrame("5T车间人员工作量");
@@ -37,7 +39,7 @@ public class WorkLoadInfoDisplay {
         final WorkLoadInfoModel WorkLoadInfoModel = new WorkLoadInfoModel();
         final JTable t = new JTable(WorkLoadInfoModel);
         JPanel p = new JPanel();
-        final JTextField tfName = new JTextField("");
+        
         JLabel lName = new JLabel("关键字");
         JButton QueryWorkLoadInfoBtn = new JButton("查询");
         JButton DrawWorkLoadInfoBtn = new JButton("图显");
@@ -71,29 +73,38 @@ public class WorkLoadInfoDisplay {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String QueryWorkLoadInfoText = tfName.getText();
+				new FileWriter().wirte("workload.txt", QueryWorkLoadInfoText);
 				if (QueryWorkLoadInfoText.length() == 0) {
-					JOptionPane.showMessageDialog(f, "关键字不能为空");//弹出对话框提示用户
-					//名称输入框获取焦点
-					tfName.grabFocus();
+					try {
+						List<WorkloadInfo> workloadInfos = new WorkloadController().query();
+						WorkLoadInfoModel.workloadInfos = workloadInfos;
+						t.updateUI();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}else {
+					List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
+					Map<String, Object> param=new HashMap<String, Object>();
+					param.put("name", "name");
+					param.put("rela", "=");//以键值对的方式上传参数
+					param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
+					params.add(param);
+					
+					WorkloadController dbControllerByname = new WorkloadController();
+					List<WorkloadInfo> list = null;
+					try {
+						list = dbControllerByname.get(params);
+						WorkLoadInfoModel.workloadInfos= list;
+						t.updateUI();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}		
 				}
-				List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
-				Map<String, Object> param=new HashMap<String, Object>();
-				param.put("name", "name");
-				param.put("rela", "=");//以键值对的方式上传参数
-				param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
-				params.add(param);
+				}
 				
-				WorkloadController dbControllerByname = new WorkloadController();
-				List<WorkloadInfo> list = null;
-				try {
-					list = dbControllerByname.get(params);
-					WorkLoadInfoModel.workloadInfos= list;
-					t.updateUI();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}		
-			}
 		});
         
         //t.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

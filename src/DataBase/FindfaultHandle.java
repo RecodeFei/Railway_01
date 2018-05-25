@@ -38,9 +38,9 @@ public class FindfaultHandle {
 			FindfaultInfo.setCar_type(rs.getString("car_type"));
 			FindfaultInfo.setFault_name(rs.getString("fault_name"));
 			FindfaultInfo.setFault_type(rs.getString("fault_type"));
-			FindfaultInfo.setTeam(rs.getString("money"));
-			FindfaultInfo.setName(rs.getString("team"));
-			FindfaultInfo.setMoney(rs.getString("name"));
+			FindfaultInfo.setMoney(rs.getString("money"));
+			FindfaultInfo.setTeam(rs.getString("team"));
+			FindfaultInfo.setName(rs.getString("name"));
 			FindfaultInfolist.add(FindfaultInfo);
 		}
 		return FindfaultInfolist;

@@ -19,7 +19,7 @@ public class DrawWorkLoadTeam {
 	public  DrawWorkLoadTeam() throws Exception{
 		CategoryDataset dataset = getDataSet();
         JFreeChart chart = ChartFactory.createBarChart3D(
-       		                 "班组", // 图表标题
+       		                 "班组工作量统计", // 图表标题
                             "日期", // 目录轴的显示标签
                             "数量", // 数值轴的显示标签
                             dataset, // 数据集
@@ -79,6 +79,7 @@ public class DrawWorkLoadTeam {
            int sanban81  = 0;
            int sanban82 = 0;
            int sanban83 = 0;
+           
            int siban76 = 0;
            int siban77 =0;
            int siban78 =0;

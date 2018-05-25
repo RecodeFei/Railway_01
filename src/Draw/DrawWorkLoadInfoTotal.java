@@ -12,8 +12,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import DataBase.BaseController;
-import DataBase.BaseInfo;
 import DataBase.WorkloadController;
 import DataBase.WorkloadInfo;
 
@@ -22,7 +20,7 @@ public class DrawWorkLoadInfoTotal {
 	public  DrawWorkLoadInfoTotal() throws Exception{
 		CategoryDataset dataset = getDataSet();
         JFreeChart chart = ChartFactory.createBarChart3D(
-       		                 "总量", // 图表标题
+       		                 "检车员工作量统计总量", // 图表标题
                             "班组", // 目录轴的显示标签
                             "数量", // 数值轴的显示标签
                             dataset, // 数据集
