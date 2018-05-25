@@ -8,7 +8,15 @@ import java.io.IOException;
 public class FileWriter {
 	public void wirte(String filePath,String teststring) {
 		// TODO Auto-generated method stub
-		File file = new File("/home/feikuang/workspace/Railway_01", filePath);  
+		String os = System.getProperty("os.name");
+		File file = null;
+		if(os.equals("Linux")){
+			file = new File("/home/feikuang/workspace/tmp", filePath);  
+		}else if(os.toLowerCase().startsWith("win")){
+			file = new File("C:\tmp", filePath);  
+		}else {
+			
+		}
         try {  
             file.createNewFile(); // 创建文件  
         } catch (IOException e) {  

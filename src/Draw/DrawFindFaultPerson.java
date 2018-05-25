@@ -19,7 +19,7 @@ import DataBase.FindfaultInfo;
 
 public class DrawFindFaultPerson{
 	ChartPanel frame1;
-	static String [] lines =new FileReader("/home/feikuang/workspace/Railway_01/findfault.txt","UTF-8").getLines();
+	static String [] lines =new FileReader("//home/feikuang/workspace/tmp/findfault.txt","UTF-8").getLines();
 	static String reg = "'";
 	static String name = lines[0].replaceAll(reg,"");
 	public  DrawFindFaultPerson() throws Exception{

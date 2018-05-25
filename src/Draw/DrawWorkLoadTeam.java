@@ -44,7 +44,8 @@ public class DrawWorkLoadTeam {
          frame1=new ChartPanel(chart,true);        //这里也可以用chartFrame,可以直接生成一个独立的Frame
          
 	}
-	   private static CategoryDataset getDataSet() throws Exception {
+	   @SuppressWarnings("unused")
+	private static CategoryDataset getDataSet() throws Exception {
            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
            List<WorkloadInfo> workloadInfos = new WorkloadController().query();
            int yiban76 = 0;
@@ -80,7 +81,7 @@ public class DrawWorkLoadTeam {
            int sanban82 = 0;
            int sanban83 = 0;
            
-           int siban76 = 0;
+           int siban76 =0;
            int siban77 =0;
            int siban78 =0;
            int siban79 = 0;
