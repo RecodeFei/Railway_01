@@ -11,6 +11,7 @@ import DataBase.AccuracyInfo;
 
 
 
+@SuppressWarnings("serial")
 public class AccuracyInfoModel extends AbstractTableModel{
 	public AccuracyInfoModel() throws Exception{} 
     String[] columnNames = new String[] {"id","日期","班组","检车员","准确率"};

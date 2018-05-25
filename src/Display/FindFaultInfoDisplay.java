@@ -17,10 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
-import DataBase.BaseController;
-import DataBase.WorkloadController;
-import Draw.DrawWorkLoadPerson;
 import DataBase.FindfaultController;
 import DataBase.FindfaultInfo;
 

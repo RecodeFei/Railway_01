@@ -1,6 +1,5 @@
 package Draw;
 import java.awt.Font;
-import java.sql.Date;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
@@ -12,9 +11,6 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-
-import DataBase.BaseController;
-import DataBase.BaseInfo;
 import DataBase.WorkloadController;
 import DataBase.WorkloadInfo;
 
@@ -83,7 +79,6 @@ public class DrawWorkLoadTeam {
            int sanban81  = 0;
            int sanban82 = 0;
            int sanban83 = 0;
-           
            int siban76 = 0;
            int siban77 =0;
            int siban78 =0;
@@ -94,7 +89,7 @@ public class DrawWorkLoadTeam {
            int siban81  = 0;
            int siban82 = 0;
            int siban83 = 0;
-
+           
            for(int i=0; i<workloadInfos.size(); i++) {
         	   //System.out.println(baseInfos.get(i).getEducation());
         	   if(workloadInfos.get(i).getTime().toString().equals("2017年6月")) {

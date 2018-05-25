@@ -10,7 +10,7 @@
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.13.jar"/>
 	<classpathentry kind="lib" path="lib/junit-3.8.1.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.13.jar"/>
-	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.39-bin.jar"/>
+	<classpathentry kind="lib" path="/home/feikuang/workspace/Railway_01/lib/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="lib" path="lib/poi-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="lib/poi-examples-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="lib/poi-excelant-3.9-20121203.jar"/>
@@ -20,7 +20,8 @@
 	<classpathentry kind="lib" path="lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/RailwayPoi"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jfree"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySql"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQL"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jfree"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import tools.testDB;
 //序号	班组	姓名	性别	出生年月	年龄	文化程度	参加工作时间	技术职称	职务	政治面貌	技能等级	技术资格	取证时间	第一次复审时间	第二次复审时间	第三次复审时间	技术资格	取证时间	第一次复审时间	第二次复审时间	第三次复审时间		
 import DataBase.BaseHandle;
 import DataBase.BaseInfo;
 
 
+@SuppressWarnings("serial")
 public class BaseInfoModel extends AbstractTableModel{
 	public BaseInfoModel() throws Exception{} 
     String[] columnNames = new String[] {"id","班组","姓名", "性别", "出生年月","年龄","文化程度","参加工作时间", "技术职称", "职务",

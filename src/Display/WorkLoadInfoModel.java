@@ -3,14 +3,11 @@ package Display;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-
-import tools.testDB;
-import DataBase.BaseHandle;
-import DataBase.BaseInfo;
 import DataBase.WorkloadHandle;
 import DataBase.WorkloadInfo;
 
 
+@SuppressWarnings("serial")
 public class WorkLoadInfoModel extends AbstractTableModel{
 	public WorkLoadInfoModel() throws Exception{} 
     String[] columnNames = new String[] {"id","日期","班次","检车员","总量数"};

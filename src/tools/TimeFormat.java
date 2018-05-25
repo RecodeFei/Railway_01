@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.apache.poi.hssf.usermodel.examples.NewLinesInCells;
-
 public class TimeFormat {
 	public String timeformat(String realtime) throws ParseException{
 	   String returnStrnig;

@@ -1,7 +1,6 @@
 package DataBase;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ public class ImportHandle {
 	 * @param bi
 	 * @throws Exception
 	 */
-	public List query() throws SQLException{
+	public List<ImportInfo> query() throws SQLException{
 		ArrayList<ImportInfo> ImportinfoList = new ArrayList<ImportInfo>();
 		//获取数据库连接
 		Connection conn = DBUtil.getConnection();
@@ -27,7 +26,6 @@ public class ImportHandle {
 		PreparedStatement ptmt = conn.prepareStatement(sb.toString());
 		
 		ResultSet rs = ptmt.executeQuery();
-		ImportInfo Workload = null;
 		
 		while (rs.next()){
 			ImportInfo importinfo  = new ImportInfo();
@@ -73,7 +71,6 @@ public class ImportHandle {
 	 * @throws Exception
 	 */
 	
-	@SuppressWarnings("deprecation")
 	public void addImportinfo(ImportInfo importinfo) throws Exception{
 		//获取数据库连接
 		Connection conn = DBUtil.getConnection();

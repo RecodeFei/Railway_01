@@ -1,7 +1,6 @@
 package DataBase;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,7 +64,6 @@ public class BaseHandle {
 	 * @throws Exception
 	 */
 	
-	@SuppressWarnings("deprecation")
 	public void addBaseInfo(BaseInfo baseinfo) throws Exception{
 		//获取数据库连接
 		Connection conn = DBUtil.getConnection();

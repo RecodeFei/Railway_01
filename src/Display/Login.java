@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+@SuppressWarnings("serial")
 public class Login extends JFrame implements ActionListener {
 	private JPanel jp=new JPanel();
 	private JLabel[] jlArray={new JLabel("用户名"),

@@ -18,7 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import DataBase.BaseController;
 import DataBase.AccuracyController;
 import DataBase.AccuracyInfo;
 

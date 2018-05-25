@@ -3,17 +3,11 @@ package Display;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
-
-import tools.testDB;
-import DataBase.BaseHandle;
-import DataBase.BaseInfo;
 import DataBase.FindfaultHandle;
 import DataBase.FindfaultInfo;
-import DataBase.WorkloadHandle;
-import DataBase.WorkloadInfo;
 
 
+@SuppressWarnings("serial")
 public class FindFaultInfoModel extends AbstractTableModel{
 	public FindFaultInfoModel() throws Exception{} 
     String[] columnNames = new String[] {"id","日期","发现日期","车型车号","故障名称","审核情况","奖励金额(元)","班组","发现人"};

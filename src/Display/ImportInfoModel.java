@@ -3,16 +3,11 @@ package Display;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
-
-import org.apache.poi.hwpf.model.OldCHPBinTable;
-
-import tools.testDB;
-import DataBase.BaseHandle;
 import DataBase.ImportHandle;
 import DataBase.ImportInfo;
 
 
+@SuppressWarnings("serial")
 public class ImportInfoModel extends AbstractTableModel{
 	public ImportInfoModel() throws Exception{} 
     String[] columnNames = new String[] {"id","时间","操作","车间","录入时间","探测站","班次","日期","到达时间",

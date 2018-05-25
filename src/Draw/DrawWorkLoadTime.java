@@ -12,8 +12,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import DataBase.BaseController;
-import DataBase.BaseInfo;
 import DataBase.WorkloadController;
 import DataBase.WorkloadInfo;
 

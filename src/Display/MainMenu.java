@@ -1,7 +1,5 @@
 package Display;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,27 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import java.awt.Component;
-import javax.swing.Box;
-import java.awt.Dimension;
-import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Window;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 //import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings("serial")
 public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtt;
+	@SuppressWarnings("unused")
 	private JButton BaseInfoButton;
 
 	/**

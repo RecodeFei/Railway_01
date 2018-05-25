@@ -17,12 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
-import DataBase.BaseController;
 import DataBase.WorkloadController;
 import DataBase.WorkloadInfo;
-import Draw.DrawWorkLoadInfoTotal;
-import Draw.DrawWorkLoadPerson;
 import Draw.DrawWorkLoadmainClass;
 
 public class WorkLoadInfoDisplay {

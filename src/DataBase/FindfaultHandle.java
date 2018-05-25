@@ -37,7 +37,7 @@ public class FindfaultHandle {
 			FindfaultInfo.setDate(rs.getString("date"));
 			FindfaultInfo.setCar_type(rs.getString("car_type"));
 			FindfaultInfo.setFault_name(rs.getString("fault_name"));
-			FindfaultInfo.setFault_name(rs.getString("fault_type"));
+			FindfaultInfo.setFault_type(rs.getString("fault_type"));
 			FindfaultInfo.setTeam(rs.getString("money"));
 			FindfaultInfo.setName(rs.getString("team"));
 			FindfaultInfo.setMoney(rs.getString("name"));
@@ -52,7 +52,6 @@ public class FindfaultHandle {
 	 * @throws Exception
 	 */
 	
-	@SuppressWarnings("deprecation")
 	public void addFindfaultInfo(FindfaultInfo FindfaultInfo) throws Exception{
 		//获取数据库连接
 		Connection conn = DBUtil.getConnection();
