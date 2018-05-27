@@ -2,6 +2,7 @@ package Display;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,39 +19,47 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import tools.FileWriter;
-
 import DataBase.AccuracyController;
 import DataBase.AccuracyInfo;
+import DataBase.WorkloadController;
+import DataBase.WorkloadInfo;
 import Draw.DrawAccuracymainClass;
+import Draw.DrawWorkLoadmainClass;
 
 public class AccuracyInfoDisplay {
-
+	String text;
 	/**
 	 * @param args
 	 * @throws Exception 
 	 */
+	JTextField tfName = new JTextField("");
 	public void AccuracyInfoShow() throws Exception {
 		// TODO Auto-generated method stub
-		final JFrame f = new JFrame("5T车间人员检车准确率");
+		final JFrame f = new JFrame("5T车间人员准确率");
         f.setSize(400, 300);
         f.setLocation(200, 200);
         f.setLayout(new BorderLayout());
+		 int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+		 int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+		 int windowsWedth = 700;
+		 int windowsHeight = 400;
         
-        final AccuracyInfoModel AccuracyInfoModel = new AccuracyInfoModel();
-        final JTable t = new JTable(AccuracyInfoModel);
+        final AccuracyInfoModel accuracyInfoModel = new AccuracyInfoModel();
+        final JTable t = new JTable(accuracyInfoModel);
         JPanel p = new JPanel();
+        
         JLabel lName = new JLabel("关键字");
-        final JTextField tfName = new JTextField("");
-        JButton QueryAccuracyInfoBtn = new JButton("查询");
+        JButton QueryAccuracyBtn = new JButton("查询");
         JButton DrawAccuracyInfoBtn = new JButton("图显");
         tfName.setPreferredSize(new Dimension(400, 30));
-        QueryAccuracyInfoBtn.setPreferredSize(new Dimension(100,30));
+        QueryAccuracyBtn.setPreferredSize(new Dimension(100,30));
         DrawAccuracyInfoBtn.setPreferredSize(new Dimension(100, 30));
         
         p.add(lName);
         p.add(tfName);
-        p.add(QueryAccuracyInfoBtn);
+        p.add(QueryAccuracyBtn);
         p.add(DrawAccuracyInfoBtn);
+        
         
         DrawAccuracyInfoBtn.addActionListener(new ActionListener() {
 			
@@ -66,24 +75,26 @@ public class AccuracyInfoDisplay {
 			}
 		});
         
-        QueryAccuracyInfoBtn.addActionListener(new ActionListener() {
+        QueryAccuracyBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String QueryAccuracyInfoText = tfName.getText();
-				new FileWriter().wirte("fccuracy.txt", QueryAccuracyInfoText);
-				if (QueryAccuracyInfoText.length() == 0) {				
-					if (QueryAccuracyInfoText.length() == 0) {
-						try {
-							List<AccuracyInfo> accuracyInfos = new AccuracyController().query();
-							AccuracyInfoModel.accuracyInfos = accuracyInfos;
-							t.updateUI();
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+				
+				if (QueryAccuracyInfoText.length() == 0) {
+					try {
+						new FileWriter().wirte("fccuracy.txt", "''");
+						List<AccuracyInfo> accuracyInfos = new AccuracyController().query();
+						accuracyInfoModel.accuracyInfos = accuracyInfos;
+						t.updateUI();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}else {
+					new FileWriter().wirte("fccuracy.txt", QueryAccuracyInfoText);
 					List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
 					Map<String, Object> param=new HashMap<String, Object>();
 					param.put("name", "name");
@@ -91,17 +102,16 @@ public class AccuracyInfoDisplay {
 					param.put("value", tfName.getText().toString());//注意加上单引号，因为这个变量是字符串的形式
 					params.add(param);
 					
-					AccuracyController accuracyController = new AccuracyController();
+					AccuracyController dbControllerByname = new AccuracyController();
 					List<AccuracyInfo> list = null;
 					try {
-						list = accuracyController.get(params);
-						AccuracyInfoModel.accuracyInfos = list;
+						list = dbControllerByname.get(params);
+						accuracyInfoModel.accuracyInfos= list;
 						t.updateUI();
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}		
-				}
 				}
 				}
 				
@@ -112,12 +122,13 @@ public class AccuracyInfoDisplay {
         f.add(p, BorderLayout.NORTH);
         f.add(sp, BorderLayout.CENTER);
         t.getColumnModel().getColumn(0).setPreferredWidth(20);
- 
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setBounds((width -windowsWedth) / 2,
+                (height - windowsHeight) / 2, windowsWedth, windowsHeight);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
  
         f.setVisible(true);
 
 	}
-        
+
 }
 

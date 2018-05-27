@@ -19,13 +19,23 @@ import DataBase.FindfaultInfo;
 
 public class DrawFindFaultPerson{
 	ChartPanel frame1;
-	static String [] lines =new FileReader("C:\tmp\findfault.txt","UTF-8").getLines();
+	static String [] lines=null;
+	String os = System.getProperty("os.name");
 	static String reg = "'";
-	static String name = lines[0].replaceAll(reg,"");
+	static String name;
 	public  DrawFindFaultPerson() throws Exception{
+		
+		if(os.equals("Mac OS X")) {
+			lines = new FileReader("/Users/feikuang/eclipse-workspace/tmp/findfault.txt","UTF-8").getLines();
+			name = lines[0].replaceAll(reg,"");
+		}else if(os.equals("Linux")) {
+			lines = new FileReader("/home/feikuang/workspace/tmp/findfault.txt","UTF-8").getLines();
+			name = lines[0].replaceAll(reg,"");
+		}else {
+			lines = new FileReader("C:\\tmp\\findfault.txt","UTF-8").getLines();
+			name = lines[0].replaceAll(reg,"");
+		}
 		CategoryDataset dataset = getDataSet();
-		
-		
         JFreeChart chart = ChartFactory.createBarChart3D(
        		                name, // 图表标题
                             "日期", // 目录轴的显示标签
@@ -73,6 +83,7 @@ public class DrawFindFaultPerson{
         			  typeC += 1;
         		  }
         		  if(findfaultInfos.get(i).getFault_type().equals("D类故障")){
+        			  System.out.println(typeD);
         			  typeD += 1;
         		  }
         		  if(findfaultInfos.get(i).getFault_type().equals("E类故障")){
@@ -80,6 +91,7 @@ public class DrawFindFaultPerson{
         		  }
         	  }
            }
+          
            dataset.addValue(typeA, "A类故障", "A类故障");
            dataset.addValue(typeB, "B类故障", "B类故障");
            dataset.addValue(typeC, "C类故障", "C类故障");

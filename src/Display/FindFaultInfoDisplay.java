@@ -2,6 +2,7 @@ package Display;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,6 +35,10 @@ public class FindFaultInfoDisplay {
         f.setSize(400, 300);
         f.setLocation(200, 200);
         f.setLayout(new BorderLayout());
+		 int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+		 int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+		 int windowsWedth = 700;
+		 int windowsHeight = 400;
         
         final FindFaultInfoModel findFaultInfoModel = new FindFaultInfoModel();
         final JTable t = new JTable(findFaultInfoModel);
@@ -71,9 +76,10 @@ public class FindFaultInfoDisplay {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String QueryFindFaultInfoText = tfName.getText();			
-				new FileWriter().wirte("findfault.txt", QueryFindFaultInfoText);
+				
 				if (QueryFindFaultInfoText.length() == 0) {
 					try {
+						new FileWriter().wirte("findfault.txt", "''");
 						List<FindfaultInfo> findfaultInfos = new FindfaultController().query();
 						findFaultInfoModel.findfaultInfos = findfaultInfos;
 						t.updateUI();
@@ -82,6 +88,7 @@ public class FindFaultInfoDisplay {
 						e1.printStackTrace();
 					}
 				}else {
+					new FileWriter().wirte("findfault.txt", QueryFindFaultInfoText);
 					List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
 					Map<String, Object> param=new HashMap<String, Object>();
 					param.put("name", "name");
@@ -109,8 +116,9 @@ public class FindFaultInfoDisplay {
         f.add(p, BorderLayout.NORTH);
         f.add(sp, BorderLayout.CENTER);
         t.getColumnModel().getColumn(0).setPreferredWidth(20);
- 
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setBounds((width) / 2,
+                (-height) / 2, windowsWedth, windowsHeight);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
  
         f.setVisible(true);
 

@@ -2,6 +2,7 @@ package Display;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ public class WorkLoadInfoDisplay {
         f.setSize(400, 300);
         f.setLocation(200, 200);
         f.setLayout(new BorderLayout());
+		 int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+		 int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+		 int windowsWedth = 700;
+		 int windowsHeight = 400;
         
         final WorkLoadInfoModel WorkLoadInfoModel = new WorkLoadInfoModel();
         final JTable t = new JTable(WorkLoadInfoModel);
@@ -73,9 +78,10 @@ public class WorkLoadInfoDisplay {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String QueryWorkLoadInfoText = tfName.getText();
-				new FileWriter().wirte("workload.txt", QueryWorkLoadInfoText);
+				
 				if (QueryWorkLoadInfoText.length() == 0) {
 					try {
+						new FileWriter().wirte("workload.txt", "''");
 						List<WorkloadInfo> workloadInfos = new WorkloadController().query();
 						WorkLoadInfoModel.workloadInfos = workloadInfos;
 						t.updateUI();
@@ -85,6 +91,7 @@ public class WorkLoadInfoDisplay {
 					}
 					
 				}else {
+					new FileWriter().wirte("workload.txt", QueryWorkLoadInfoText);
 					List<Map<String, Object>> params=new ArrayList<Map<String,Object>>();
 					Map<String, Object> param=new HashMap<String, Object>();
 					param.put("name", "name");
@@ -112,8 +119,9 @@ public class WorkLoadInfoDisplay {
         f.add(p, BorderLayout.NORTH);
         f.add(sp, BorderLayout.CENTER);
         t.getColumnModel().getColumn(0).setPreferredWidth(20);
- 
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setBounds((-width) / 2,
+                (height) / 2, windowsWedth, windowsHeight);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
  
         f.setVisible(true);
 

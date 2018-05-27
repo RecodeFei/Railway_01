@@ -2,6 +2,7 @@ package Display;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -33,7 +34,10 @@ public class ImportInfoDisplay {
         f.setSize(400, 300);
         f.setLocation(200, 200);
         f.setLayout(new BorderLayout());
-        
+		 int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+		 int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+		 int windowsWedth = 700;
+		 int windowsHeight = 400;
         final ImportInfoModel ImportInfoModel = new ImportInfoModel();
         final JTable t = new JTable(ImportInfoModel);
         JPanel p = new JPanel();
@@ -83,8 +87,9 @@ public class ImportInfoDisplay {
         f.add(p, BorderLayout.NORTH);
         f.add(sp, BorderLayout.CENTER);
         t.getColumnModel().getColumn(0).setPreferredWidth(20);
- 
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setBounds((width) / 2,
+                (height) / 2, windowsWedth, windowsHeight);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
  
         f.setVisible(true);
 

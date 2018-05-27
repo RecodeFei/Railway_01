@@ -150,9 +150,9 @@ public class FindfaultHandle {
 			bs.setCar_type(rs.getString("car_type"));
 			bs.setFault_name(rs.getString("fault_name"));
 			bs.setFault_type(rs.getString("fault_type"));
-			bs.setTeam(rs.getString("money"));
-			bs.setName(rs.getString("team"));
-			bs.setMoney(rs.getString("name"));
+			bs.setMoney(rs.getString("money"));
+			bs.setTeam(rs.getString("team"));
+			bs.setName(rs.getString("name"));
 		}
 		return bs;
 		
@@ -166,7 +166,7 @@ public class FindfaultHandle {
 		List<FindfaultInfo> result = new ArrayList<FindfaultInfo>();
 		Connection con = DBUtil.getConnection();
 		StringBuffer sBuffer = new StringBuffer();
-		sBuffer.append("select * from railway_FindfaultInfo where 1=1 ");//注意where 1=1 的小技巧
+		sBuffer.append("select * from railway_findfault where 1=1 ");//注意where 1=1 的小技巧
 		//sBuffer.append("where name like ? and skill_level like ?");
 		if(params !=null && params.size()>0){//先判断集合是否为空
 //遍历集合
@@ -188,9 +188,9 @@ public class FindfaultHandle {
 			bs.setCar_type(rs.getString("car_type"));
 			bs.setFault_name(rs.getString("fault_name"));
 			bs.setFault_type(rs.getString("fault_type"));
-			bs.setTeam(rs.getString("money"));
-			bs.setName(rs.getString("team"));
 			bs.setMoney(rs.getString("money"));
+			bs.setTeam(rs.getString("team"));
+			bs.setName(rs.getString("name"));
 			
 			result.add(bs);//将结果封装到对象中
 		}

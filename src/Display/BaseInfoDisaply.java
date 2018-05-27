@@ -2,6 +2,7 @@ package Display;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,11 +30,15 @@ public class BaseInfoDisaply {
 	 */
 	public void BaseinfoShow() throws Exception {
 		// TODO Auto-generated method stub
+		 int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+		 int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+		 int windowsWedth = 700;
+		 int windowsHeight = 400;
 		final JFrame f = new JFrame("5T车间人员基本信息");
         f.setSize(400, 300);
         f.setLocation(200, 200);
         f.setLayout(new BorderLayout());
-        
+		
         final BaseInfoModel baseInfoModel = new BaseInfoModel();
         final JTable t = new JTable(baseInfoModel);
         JPanel p = new JPanel();
@@ -107,9 +112,10 @@ public class BaseInfoDisaply {
         f.add(p, BorderLayout.NORTH);
         f.add(sp, BorderLayout.CENTER);
         t.getColumnModel().getColumn(0).setPreferredWidth(20);
- 
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- 
+        f.setBounds((-width) / 2,
+                (-height) / 2, windowsWedth, windowsHeight);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
         f.setVisible(true);
 
 	}

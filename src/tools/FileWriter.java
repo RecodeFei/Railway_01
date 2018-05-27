@@ -5,17 +5,25 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import sun.nio.cs.ext.TIS_620;
+
 public class FileWriter {
 	public void wirte(String filePath,String teststring) {
 		// TODO Auto-generated method stub
 		String os = System.getProperty("os.name");
 		File file = null;
 		if(os.equals("Linux")){
+			File dir = new File("/home/feikuang/workspace/tmp");
+			this.judeDirExists(dir);
 			file = new File("/home/feikuang/workspace/tmp", filePath);  
-		}else if(os.toLowerCase().startsWith("win")){
-			file = new File("C:\tmp", filePath);  
+		}else if(os.equals("Mac OS X")){
+			File dir = new File("/Users/feikuang/eclipse-workspace/tmp");
+			this.judeDirExists(dir);
+			file = new File("/Users/feikuang/eclipse-workspace/tmp", filePath);  
 		}else {
-			
+			File dir = new File("C:\\tmp");
+			this.judeDirExists(dir);
+			file = new File("C:\\tmp", filePath);  
 		}
         try {  
             file.createNewFile(); // 创建文件  
@@ -44,5 +52,18 @@ public class FileWriter {
             e.printStackTrace();  
         }  
 	}
+	 public void judeDirExists(File file) {
+       if (file.exists()) {
+         if (file.isDirectory()) {
+                System.out.println("dir exists");
+         } else {
+              System.out.println("the same name file exists, can not create dir");
+           }
+       } else {
+            System.out.println("dir not exists, create it ...");
+          file.mkdir();
+       }
+
+     }
 
 }

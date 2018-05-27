@@ -21,14 +21,25 @@ import DataBase.AccuracyInfo;
 
 public class DrawAccuracyPerson{
 	ChartPanel frame1;
-	static String [] lines =new FileReader("C:\tmp\fccuracy.txt","UTF-8").getLines();
 	
+	static String [] lines;
+	String os = System.getProperty("os.name");
 	static String reg = "'";
-	static String name = lines[0].replaceAll(reg,"");
+	static String name ;
 	public  DrawAccuracyPerson() throws Exception{
-		CategoryDataset dataset = getDataSet();
+	
 		
-		
+	if(os.equals("Mac OS X")) {
+		lines = new FileReader("/Users/feikuang/eclipse-workspace/tmp/fccuracy.txt","UTF-8").getLines();
+		name = lines[0].replaceAll(reg,"");
+	}else if(os.equals("Linux")) {
+		lines = new FileReader("/home/feikuang/workspace/tmp/fccuracy.txt","UTF-8").getLines();
+		name = lines[0].replaceAll(reg,"");
+	}else {
+		lines = new FileReader("C:\\tmp\\fccuracy.txt","UTF-8").getLines();
+		name = lines[0].replaceAll(reg,"");
+	}
+	CategoryDataset dataset = getDataSet();
         JFreeChart chart = ChartFactory.createBarChart3D(
        		                name, // 图表标题
                             "日期", // 目录轴的显示标签

@@ -1,5 +1,7 @@
 package Display;
 
+import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,6 +19,11 @@ public class Login extends JFrame implements ActionListener {
 			new JButton("数据库登陆")};
 	private JTextField jtxtName =new JTextField();
 	private JPasswordField jtxtPassword= new JPasswordField();
+	 public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+	 public int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+	 public int windowsWedth = 300;
+	 public int windowsHeight = 250;
+	
 public Login(){
 		jp.setLayout(null);
 		for(int i=0;i<2;i++){
@@ -39,8 +46,10 @@ public Login(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("登陆");
 		this.setResizable(false);
-		this.setBounds(100, 100, 300, 250);
+		this.setBounds((width - windowsWedth) / 2,
+                (height - windowsHeight) / 2, windowsWedth, windowsHeight);
 		this.setVisible(true);
+		
 	}
 public void actionPerformed(ActionEvent e){
 	if(e.getSource()==jtxtName){
